@@ -7,6 +7,7 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
+const fs = require('fs');
 const { dbManager } = require('./config/database');
 
 // Import Route Handlers
@@ -54,10 +55,22 @@ app.use('/api/public/cards', publicCardRoutes);
 app.use('/api/uploads', uploadRoutes);
 app.use('/api/admin', adminRoutes);
 
-// Catch-all 404 handler
-app.use((req, res) => {
-  res.status(404).json({ success: false, message: `Route not found: ${req.method} ${req.originalUrl}` });
-});
+// Serve frontend static build in production if available
+const frontendDist = path.join(__dirname, '../frontend/dist');
+if (fs.existsSync(frontendDist)) {
+  app.use(express.static(frontendDist));
+  app.get('*', (req, res) => {
+    if (req.path.startsWith('/api')) {
+      return res.status(404).json({ success: false, message: `API route not found: ${req.method} ${req.originalUrl}` });
+    }
+    res.sendFile(path.join(frontendDist, 'index.html'));
+  });
+} else {
+  // Catch-all 404 handler for API-only dev mode
+  app.use((req, res) => {
+    res.status(404).json({ success: false, message: `Route not found: ${req.method} ${req.originalUrl}` });
+  });
+}
 
 // Centralized Error Handler
 app.use(errorMiddleware);
@@ -66,9 +79,9 @@ app.use(errorMiddleware);
 async function startServer() {
   try {
     await dbManager.initialize();
-    app.listen(PORT, () => {
+    app.listen(PORT, '0.0.0.0', () => {
       console.log(`\n======================================================`);
-      console.log(`✨ HeartCraft API is running on port ${PORT}`);
+      console.log(`✨ HeartCraft API is running on port ${PORT} (0.0.0.0)`);
       console.log(`📡 URL: http://localhost:${PORT}`);
       console.log(`💖 Free instant publishing enabled (No payments required)`);
       console.log(`======================================================\n`);
