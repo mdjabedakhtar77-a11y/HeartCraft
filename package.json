@@ -1,0 +1,14 @@
+{
+  "name": "heartcraft",
+  "version": "1.0.0",
+  "description": "HeartCraft - Interactive Digital Greeting & Surprise Platform",
+  "scripts": {
+    "dev:backend": "node backend/server.js",
+    "dev:frontend": "npm --prefix frontend run dev",
+    "build:frontend": "npm --prefix frontend run build",
+    "test:backend": "node -e \"require('./backend/server.js')\""
+  },
+  "keywords": ["surprise", "interactive-card", "fullstack", "react", "express", "razorpay"],
+  "author": "HeartCraft Team",
+  "license": "ISC"
+}

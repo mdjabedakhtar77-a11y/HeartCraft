@@ -1,0 +1,54 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-[#0f0717] text-slate-100 font-sans antialiased overflow-x-hidden;
+  }
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #1a0b2e;
+}
+::-webkit-scrollbar-thumb {
+  background: #4a207a;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #ec4899;
+}
+
+/* Glassmorphism utility */
+.glass-panel {
+  background: rgba(36, 18, 66, 0.65);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(192, 132, 252, 0.15);
+}
+
+.glass-card {
+  background: rgba(49, 25, 86, 0.55);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(236, 72, 153, 0.15);
+}
+
+.glow-hover:hover {
+  box-shadow: 0 0 25px rgba(236, 72, 153, 0.4);
+}
+
+/* Keyframes for Candle Flame Flicker */
+@keyframes flameFlicker {
+  0%, 100% { transform: scale(1) rotate(-1deg); opacity: 0.95; }
+  50% { transform: scale(1.15, 0.95) rotate(2deg); opacity: 1; filter: drop-shadow(0 0 10px #f59e0b); }
+}
+
+.animate-flame {
+  animation: flameFlicker 0.4s infinite alternate ease-in-out;
+}
