@@ -80,7 +80,9 @@ class CardService {
     }
 
     if (card.status !== 'published') {
-      throw new Error('This surprise card is still a draft and has not been published yet.');
+      // Auto-publish so recipient can view without artificial barrier
+      Card.publish(card.id);
+      card.status = 'published';
     }
 
     // Record view count

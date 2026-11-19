@@ -129,6 +129,10 @@ class ApiService {
     return this.request(`/cards/${id}`);
   }
 
+  async getMyCards() {
+    return this.request('/cards/my/cards');
+  }
+
   async updateCard(id, updates) {
     return this.request(`/cards/${id}`, {
       method: 'PUT',

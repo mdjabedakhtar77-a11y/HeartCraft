@@ -19,6 +19,7 @@ import CreateCardPage from './pages/CreateCardPage';
 import CardPreviewPage from './pages/CardPreviewPage';
 import SuccessPage from './pages/SuccessPage';
 import RecipientCardPage from './pages/RecipientCardPage';
+import MyCardsPage from './pages/MyCardsPage';
 
 // Admin & Auth
 import Dashboard from './admin/Dashboard';
@@ -49,6 +50,8 @@ export default function App() {
           <Route path="/create/:type" element={<CreateCardPage />} />
           <Route path="/preview/:id" element={<CardPreviewPage />} />
           <Route path="/success/:id" element={<SuccessPage />} />
+          <Route path="/my-surprises" element={<MyCardsPage />} />
+          <Route path="/my-cards" element={<MyCardsPage />} />
 
           {/* Recipient Experience */}
           <Route path="/card/:slug" element={<RecipientCardPage />} />

@@ -72,10 +72,46 @@ exports.generatePreview = async (req, res, next) => {
   }
 };
 
+function resolveFrontendUrl(req) {
+  if (req && req.query && req.query.frontendUrl) {
+    return req.query.frontendUrl.replace(/\/$/, '');
+  }
+  const origin = req.headers?.origin || (req.headers?.referer ? new URL(req.headers.referer).origin : null);
+  if (origin && !origin.includes('localhost') && !origin.includes('127.0.0.1')) {
+    return origin.replace(/\/$/, '');
+  }
+  if (process.env.FRONTEND_URL && !process.env.FRONTEND_URL.includes('localhost')) {
+    return process.env.FRONTEND_URL.replace(/\/$/, '');
+  }
+  return 'https://heartcraft-ashy.vercel.app';
+}
+
+exports.getUserCards = async (req, res, next) => {
+  try {
+    const userId = req.user?.id;
+    if (!userId) {
+      return res.status(401).json({ success: false, message: 'Authentication required' });
+    }
+    const db = require('../config/database').getDatabase();
+    const cardRows = db.find('cards', c => Number(c.user_id) === Number(userId));
+    const frontendUrl = resolveFrontendUrl(req);
+    const cards = cardRows.map(row => {
+      const hydrated = Card.hydrate(row);
+      return {
+        ...hydrated,
+        cardUrl: `${frontendUrl}/card/${hydrated.slug}`
+      };
+    });
+    return res.json({ success: true, cards });
+  } catch (err) {
+    next(err);
+  }
+};
+
 exports.publishCard = async (req, res, next) => {
   try {
     const card = await cardService.publishCard(req.params.id);
-    const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:5173';
+    const frontendUrl = resolveFrontendUrl(req);
     const cardUrl = `${frontendUrl}/card/${card.slug}`;
 
     return res.json({
@@ -125,12 +161,12 @@ exports.generateShare = async (req, res, next) => {
       return res.status(404).json({ success: false, message: 'Card not found.' });
     }
 
-    const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:5173';
+    const frontendUrl = resolveFrontendUrl(req);
     const cardUrl = `${frontendUrl}/card/${card.slug}`;
     const whatsappMessage = encodeURIComponent(
       `✨ Hey ${card.recipient_name}! I made a special digital surprise just for you on HeartCraft ❤️ Open it here:\n${cardUrl}`
     );
-    const whatsappUrl = `https://wa.me/?text=${whatsappMessage}`;
+    const whatsappUrl = `https://api.whatsapp.com/send?text=${whatsappMessage}`;
 
     return res.json({
       success: true,
@@ -155,7 +191,7 @@ exports.getQrCode = async (req, res, next) => {
       return res.status(404).json({ success: false, message: 'Card not found.' });
     }
 
-    const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:5173';
+    const frontendUrl = resolveFrontendUrl(req);
     const cardUrl = `${frontendUrl}/card/${card.slug}`;
     const qrDataUrl = await qrService.generateQrDataUrl(cardUrl);
 

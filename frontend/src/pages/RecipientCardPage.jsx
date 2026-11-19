@@ -17,6 +17,7 @@ export default function RecipientCardPage() {
         const res = await api.getPublicCard(slug);
         if (res.success && res.card) {
           setCard(res.card);
+          document.title = `A Special Surprise for ${res.card.recipient_name} ❤️ | HeartCraft`;
         } else {
           setError('This surprise could not be found.');
         }

@@ -67,6 +67,13 @@ export default function Navbar() {
 
             {user ? (
               <div className="flex items-center gap-3">
+                <Link
+                  to="/my-surprises"
+                  className="px-3 py-1.5 rounded-xl text-xs font-semibold bg-pink-500/10 text-pink-300 border border-pink-500/20 hover:bg-pink-500/20 transition-all flex items-center gap-1.5"
+                >
+                  <Heart className="w-3.5 h-3.5 fill-pink-400" />
+                  <span>My Surprises</span>
+                </Link>
                 <span className="text-xs text-slate-300 font-medium">Hi, {user.name.split(' ')[0]}</span>
                 <button
                   onClick={logout}
@@ -132,6 +139,16 @@ export default function Navbar() {
               >
                 <Shield className="w-4 h-4" />
                 Admin Panel
+              </Link>
+            )}
+            {user && (
+              <Link
+                to="/my-surprises"
+                onClick={() => setMobileMenuOpen(false)}
+                className="flex items-center justify-center gap-2 py-2.5 rounded-xl bg-pink-500/20 text-pink-300 text-sm font-semibold border border-pink-500/30"
+              >
+                <Heart className="w-4 h-4 fill-pink-400" />
+                My Surprises
               </Link>
             )}
             {user ? (
