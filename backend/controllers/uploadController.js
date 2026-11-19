@@ -17,6 +17,7 @@ exports.uploadImage = async (req, res, next) => {
     return res.json({
       success: true,
       url: result.url,
+      dataUrl: result.dataUrl,
       public_id: result.public_id
     });
   } catch (err) {
@@ -36,6 +37,7 @@ exports.uploadAudio = async (req, res, next) => {
     return res.json({
       success: true,
       url: result.url,
+      dataUrl: result.dataUrl,
       public_id: result.public_id
     });
   } catch (err) {

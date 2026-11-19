@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import confetti from 'canvas-confetti';
 import { Heart, Sparkles, Clock, Calendar, Volume2, VolumeX } from 'lucide-react';
 import soundEffects from '../../utils/soundEffects';
+import { getSafeImageUrl, DEFAULT_FALLBACK_IMAGE } from '../../utils/imageUtils';
 
 export default function AnniversaryExperience({ card, isPreview = false }) {
   const content = card?.content || {};
@@ -155,7 +156,15 @@ export default function AnniversaryExperience({ card, isPreview = false }) {
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
                 {media.map((item, idx) => (
                   <div key={idx} className="rounded-2xl overflow-hidden aspect-square border border-purple-700/50 shadow-md">
-                    <img src={item.media_url} alt="Memory" className="w-full h-full object-cover hover:scale-105 transition-transform" />
+                    <img
+                      src={getSafeImageUrl(item.media_url)}
+                      alt="Memory"
+                      onError={(e) => {
+                        e.currentTarget.onerror = null;
+                        e.currentTarget.src = DEFAULT_FALLBACK_IMAGE;
+                      }}
+                      className="w-full h-full object-cover hover:scale-105 transition-transform"
+                    />
                   </div>
                 ))}
               </div>

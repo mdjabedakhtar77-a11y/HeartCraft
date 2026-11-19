@@ -43,7 +43,17 @@ class Card {
   static hydrate(cardRow) {
     const db = getDatabase();
     const content = db.findOne('card_content', c => Number(c.card_id) === Number(cardRow.id)) || {};
-    const media = db.find('card_media', m => Number(m.card_id) === Number(cardRow.id));
+    const mediaRows = db.find('card_media', m => Number(m.card_id) === Number(cardRow.id));
+    const media = mediaRows.map(item => {
+      let url = item.media_url || '';
+      if (url.startsWith('http://localhost:5000')) {
+        url = url.replace('http://localhost:5000', 'https://heartcraft-backend01.onrender.com');
+      }
+      return {
+        ...item,
+        media_url: url
+      };
+    });
     const settings = db.findOne('card_settings', s => Number(s.card_id) === Number(cardRow.id)) || {};
     const views = db.find('card_views', v => Number(v.card_id) === Number(cardRow.id));
     const template = Template.getById(cardRow.template_id);

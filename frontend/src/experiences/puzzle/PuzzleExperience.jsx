@@ -2,12 +2,13 @@ import React, { useState, useEffect } from 'react';
 import confetti from 'canvas-confetti';
 import { Puzzle, Sparkles, Trophy, RotateCcw } from 'lucide-react';
 import soundEffects from '../../utils/soundEffects';
+import { getSafeImageUrl, DEFAULT_FALLBACK_IMAGE } from '../../utils/imageUtils';
 
 export default function PuzzleExperience({ card, isPreview = false }) {
   const content = card?.content || {};
   const media = card?.media || [];
 
-  const puzzleImage = media[0]?.media_url || 'https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=600&auto=format&fit=crop&q=80';
+  const puzzleImage = getSafeImageUrl(media[0]?.media_url);
 
   // 3x3 Grid: 9 tiles
   const [tiles, setTiles] = useState([1, 4, 2, 0, 5, 3, 7, 6, 8]); // Scrambled indices

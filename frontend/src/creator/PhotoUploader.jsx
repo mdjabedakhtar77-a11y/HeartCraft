@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { UploadCloud, Image as ImageIcon, X, Loader2 } from 'lucide-react';
 import api from '../services/api';
+import { compressImageToDataUrl, getSafeImageUrl, DEFAULT_FALLBACK_IMAGE } from '../utils/imageUtils';
 
 export default function PhotoUploader({ media = [], onChangeMedia, maxPhotos = 4 }) {
   const [uploading, setUploading] = useState(false);
@@ -19,24 +20,27 @@ export default function PhotoUploader({ media = [], onChangeMedia, maxPhotos = 4
       for (const file of files) {
         if (uploadedMedia.length >= maxPhotos) break;
 
-        // Upload through backend API
+        // 1. Immediately create compressed Base64 Data URL (immune to server reboots/network loss)
+        const base64Url = await compressImageToDataUrl(file);
+
+        // 2. Also attempt upload to backend
+        let finalUrl = base64Url;
         try {
           const res = await api.uploadImage(file);
           if (res.success && res.url) {
-            uploadedMedia.push({
-              media_type: 'image',
-              media_url: res.url
-            });
+            // If backend returned a valid public URL that is not localhost, prefer it; otherwise use base64
+            if (!res.url.includes('localhost:5000')) {
+              finalUrl = res.url;
+            }
           }
         } catch (uploadErr) {
-          // If upload fails, create a local object URL as smooth client-side fallback
-          console.warn('API upload fallback to local preview:', uploadErr);
-          const localUrl = URL.createObjectURL(file);
-          uploadedMedia.push({
-            media_type: 'image',
-            media_url: localUrl
-          });
+          console.warn('Backend file upload had issue, using self-contained base64 image:', uploadErr);
         }
+
+        uploadedMedia.push({
+          media_type: 'image',
+          media_url: finalUrl
+        });
       }
 
       onChangeMedia(uploadedMedia);
@@ -69,8 +73,12 @@ export default function PhotoUploader({ media = [], onChangeMedia, maxPhotos = 4
         {media.map((item, idx) => (
           <div key={idx} className="relative group rounded-2xl overflow-hidden aspect-square border border-purple-800/40 bg-purple-950/40">
             <img
-              src={item.media_url}
+              src={getSafeImageUrl(item.media_url)}
               alt={`Upload ${idx + 1}`}
+              onError={(e) => {
+                e.currentTarget.onerror = null;
+                e.currentTarget.src = DEFAULT_FALLBACK_IMAGE;
+              }}
               className="w-full h-full object-cover"
             />
             <button

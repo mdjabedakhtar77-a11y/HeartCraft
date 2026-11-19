@@ -18,9 +18,13 @@ class LocalStorageProvider {
     const filename = `${folder}-${Date.now()}-${file.originalname.replace(/\s+/g, '_')}`;
     const destination = path.join(this.uploadDir, filename);
     fs.writeFileSync(destination, file.buffer);
-    const baseUrl = process.env.BACKEND_URL || 'http://localhost:5000';
+    const baseUrl = (process.env.BACKEND_URL && !process.env.BACKEND_URL.includes('localhost'))
+      ? process.env.BACKEND_URL.replace(/\/$/, '')
+      : 'https://heartcraft-backend01.onrender.com';
+    const dataUrl = `data:${file.mimetype || 'image/jpeg'};base64,${file.buffer.toString('base64')}`;
     return {
       url: `${baseUrl}/uploads/${filename}`,
+      dataUrl,
       public_id: filename
     };
   }

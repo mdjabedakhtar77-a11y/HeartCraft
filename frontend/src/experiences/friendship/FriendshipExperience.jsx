@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import confetti from 'canvas-confetti';
 import { Smile, Sparkles, Heart, Gift, MessageCircle } from 'lucide-react';
 import soundEffects from '../../utils/soundEffects';
+import { getSafeImageUrl, DEFAULT_FALLBACK_IMAGE } from '../../utils/imageUtils';
 
 export default function FriendshipExperience({ card, isPreview = false }) {
   const content = card?.content || {};
@@ -13,7 +14,7 @@ export default function FriendshipExperience({ card, isPreview = false }) {
     'https://images.unsplash.com/photo-1511632765486-a01980e01a18?w=600'
   ];
 
-  const photos = media.length > 0 ? media.map((m) => m.media_url) : fallbackPolaroids;
+  const photos = media.length > 0 ? media.map((m) => getSafeImageUrl(m.media_url)) : fallbackPolaroids;
 
   const handleOpenBox = () => {
     soundEffects.playPop();
@@ -62,7 +63,15 @@ export default function FriendshipExperience({ card, isPreview = false }) {
               }}
             >
               <div className="aspect-square overflow-hidden rounded-lg bg-slate-100">
-                <img src={src} alt="Bestie memory" className="w-full h-full object-cover" />
+                <img
+                  src={src}
+                  alt="Bestie memory"
+                  onError={(e) => {
+                    e.currentTarget.onerror = null;
+                    e.currentTarget.src = DEFAULT_FALLBACK_IMAGE;
+                  }}
+                  className="w-full h-full object-cover"
+                />
               </div>
               <p className="text-xs font-handwriting text-slate-600 mt-3 text-center text-sm">
                 Memory #{idx + 1} ✨
