@@ -47,20 +47,34 @@ app.get('/api/health', (req, res) => {
   });
 });
 
-// Mount Routes
+// Mount Routes (supporting both /api/* and direct path for serverless compatibility)
 app.use('/api/auth', authRoutes);
+app.use('/auth', authRoutes);
+
 app.use('/api/templates', templateRoutes);
+app.use('/templates', templateRoutes);
+
 app.use('/api/cards', cardRoutes);
+app.use('/cards', cardRoutes);
+
 app.use('/api/public/cards', publicCardRoutes);
+app.use('/public/cards', publicCardRoutes);
+
 app.use('/api/uploads', uploadRoutes);
+app.use('/uploads', uploadRoutes);
+
 app.use('/api/admin', adminRoutes);
+app.use('/admin', adminRoutes);
 
 // Serve frontend static build in production if available
 const frontendDist = path.join(__dirname, '../frontend/dist');
 if (fs.existsSync(frontendDist)) {
   app.use(express.static(frontendDist));
-  app.get('*', (req, res) => {
-    if (req.path.startsWith('/api')) {
+  app.use((req, res, next) => {
+    if (req.method !== 'GET') {
+      return next();
+    }
+    if (req.path.startsWith('/api') || req.path.startsWith('/auth') || req.path.startsWith('/cards') || req.path.startsWith('/templates') || req.path.startsWith('/uploads') || req.path.startsWith('/admin')) {
       return res.status(404).json({ success: false, message: `API route not found: ${req.method} ${req.originalUrl}` });
     }
     res.sendFile(path.join(frontendDist, 'index.html'));
