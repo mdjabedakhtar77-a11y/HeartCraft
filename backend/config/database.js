@@ -41,7 +41,20 @@ class FileRelationalAdapter {
   load() {
     const dir = path.dirname(this.filePath);
     if (!fs.existsSync(dir)) {
-      fs.mkdirSync(dir, { recursive: true });
+      try {
+        fs.mkdirSync(dir, { recursive: true });
+      } catch (err) {
+        console.warn('[Database] Could not create directory:', err.message);
+      }
+    }
+    // If running in Vercel serverless environment and target file doesn't exist, seed from bundled file
+    if (process.env.VERCEL && !fs.existsSync(this.filePath)) {
+      const bundledPath = path.join(__dirname, '..', 'data', 'database.json');
+      if (fs.existsSync(bundledPath)) {
+        try {
+          fs.copyFileSync(bundledPath, this.filePath);
+        } catch (e) {}
+      }
     }
     if (fs.existsSync(this.filePath)) {
       try {
@@ -127,9 +140,11 @@ class DatabaseManager {
   constructor() {
     this.mode = 'local';
     this.pool = null;
-    this.localAdapter = new FileRelationalAdapter(
-      path.join(__dirname, '..', 'data', 'database.json')
-    );
+    const isVercel = Boolean(process.env.VERCEL);
+    const dbPath = isVercel
+      ? path.join('/tmp', 'database.json')
+      : path.join(__dirname, '..', 'data', 'database.json');
+    this.localAdapter = new FileRelationalAdapter(dbPath);
   }
 
   async initialize() {

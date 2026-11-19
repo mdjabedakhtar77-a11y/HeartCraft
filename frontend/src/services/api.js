@@ -46,10 +46,17 @@ class ApiService {
     };
 
     const res = await fetch(`${API_BASE}${endpoint}`, config);
-    const data = await res.json().catch(() => ({
-      success: false,
-      message: 'Failed to parse JSON response from server'
-    }));
+    let data;
+    try {
+      data = await res.json();
+    } catch {
+      data = {
+        success: false,
+        message: !res.ok
+          ? `Server returned HTTP ${res.status} (${res.statusText || 'Endpoint unavailable'}). Please check that backend is running and VITE_API_URL is configured.`
+          : 'Failed to parse JSON response from server'
+      };
+    }
 
     if (!res.ok) {
       throw new Error(data.message || `Request failed with status ${res.status}`);
