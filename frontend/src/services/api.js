@@ -4,7 +4,7 @@
  * Single Responsibility: Network communication and HTTP abstraction.
  */
 
-const BACKEND_URL = 'https://heartcraft-backend.onrender.com';
+const BACKEND_URL = 'https://heartcraft-backend01.onrender.com';
 
 const isLocalhost = typeof window !== 'undefined' && (
   window.location.hostname === 'localhost' ||
