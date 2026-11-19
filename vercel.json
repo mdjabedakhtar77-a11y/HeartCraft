@@ -5,14 +5,14 @@
   "rewrites": [
     {
       "source": "/api/(.*)",
-      "destination": "/api/[...slug]"
+      "destination": "/api/[...slug].cjs"
     },
     {
       "source": "/api",
-      "destination": "/api/index"
+      "destination": "/api/index.cjs"
     },
     {
-      "source": "/((?!api/|assets/|favicon.svg|icons.svg).*)",
+      "source": "/((?!api|assets|favicon.svg|icons.svg).*)",
       "destination": "/index.html"
     }
   ]

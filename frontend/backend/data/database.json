@@ -1,0 +1,903 @@
+{
+  "data": {
+    "users": [
+      {
+        "id": 1,
+        "name": "HeartCraft Admin",
+        "email": "admin@heartcraft.com",
+        "password_hash": "$2b$10$MjsYswTNdeidX2E6LmOCKugyPfgBK3E9cjr2XNlYZRn8wzGFhmZeq",
+        "role": "admin",
+        "created_at": "2026-11-18T19:37:51.755Z"
+      },
+      {
+        "id": 2,
+        "name": "Sarah Jenkins",
+        "email": "sarah@example.com",
+        "password_hash": "$2b$10$MjsYswTNdeidX2E6LmOCKu7lkGVEQVVIJNRPoGHmAyrkB/WC1lCfe",
+        "role": "customer",
+        "created_at": "2026-11-18T19:37:51.755Z"
+      },
+      {
+        "id": 3,
+        "name": "Test User",
+        "email": "test_1795030671759@example.com",
+        "password_hash": "$2b$10$Pf5Goa9iCNUi7YA/NejYPO/P4b2HDTWvQmiYYQTONp7wdzqLgxCym",
+        "role": "customer",
+        "created_at": "2026-11-18T19:37:51.817Z"
+      },
+      {
+        "id": 4,
+        "name": "Test User",
+        "email": "test_1795030695687@example.com",
+        "password_hash": "$2b$10$VYczLX27otGOUNhrrGs3Ae2vKquPV3n/X0BjsSGCbTGtXLhPtHEZe",
+        "role": "customer",
+        "created_at": "2026-11-18T19:38:15.751Z"
+      },
+      {
+        "id": 5,
+        "name": "Test User",
+        "email": "test_1795030708642@example.com",
+        "password_hash": "$2b$10$CkjXxcxxSAn.V4wBggRBFOxZqRgn1wIuhvl9EP0jLovV7xEjuU6Bu",
+        "role": "customer",
+        "created_at": "2026-11-18T19:38:28.705Z"
+      },
+      {
+        "id": 6,
+        "name": "Test User",
+        "email": "test_1795031038457@example.com",
+        "password_hash": "$2b$10$wL6884oanJCy1mEqqrzbPeCfRY2BmK0J.icmZUEksg9kKZh34pUtW",
+        "role": "customer",
+        "created_at": "2026-11-18T19:43:58.520Z"
+      },
+      {
+        "id": 7,
+        "name": "Test User",
+        "email": "test_1795031086799@example.com",
+        "password_hash": "$2b$10$of6l8hH8EnoWnyGbMmQYReyzryDrAb0Hocq/ypChKt/.A4mMy6/vy",
+        "role": "customer",
+        "created_at": "2026-11-18T19:44:46.863Z"
+      },
+      {
+        "id": 8,
+        "name": "Jabed Akhtar",
+        "email": "mdjabedakhtar77@gmail.com",
+        "password_hash": "$2b$10$TY/zK7MKOf6w8e1zv1vL0u2db4Qh3hfm75NVYOiYteTiETU6iq9XO",
+        "role": "customer",
+        "created_at": "2026-11-18T19:53:10.302Z"
+      },
+      {
+        "id": 9,
+        "name": "Test User",
+        "email": "test_1795080952801@example.com",
+        "password_hash": "$2b$10$q/pbjrz4j/6I.GZFcSt/wuOPB48HXukgfPZk0KGcCjVPyfhzGaLDe",
+        "role": "customer",
+        "created_at": "2026-11-19T09:35:52.863Z"
+      }
+    ],
+    "categories": [
+      {
+        "id": 1,
+        "name": "Birthday",
+        "slug": "birthday",
+        "icon": "Cake",
+        "description": "Candles, cakes, balloons, and sweet letters",
+        "created_at": "2026-11-18T19:37:51.626Z"
+      },
+      {
+        "id": 2,
+        "name": "Proposal",
+        "slug": "proposal",
+        "icon": "HeartHandshake",
+        "description": "Interactive proposal with the elusive No button",
+        "created_at": "2026-11-18T19:37:51.627Z"
+      },
+      {
+        "id": 3,
+        "name": "Anniversary",
+        "slug": "anniversary",
+        "icon": "Sparkles",
+        "description": "Relationship counter, photo timeline and heartfelt memories",
+        "created_at": "2026-11-18T19:37:51.628Z"
+      },
+      {
+        "id": 4,
+        "name": "Sorry",
+        "slug": "sorry",
+        "icon": "HeartCrack",
+        "description": "Animated wax-sealed envelope with heartfelt apologies",
+        "created_at": "2026-11-18T19:37:51.628Z"
+      },
+      {
+        "id": 5,
+        "name": "Photo Puzzle",
+        "slug": "puzzle",
+        "icon": "Puzzle",
+        "description": "Scramble your favorite photo into an interactive sliding puzzle",
+        "created_at": "2026-11-18T19:37:51.629Z"
+      },
+      {
+        "id": 6,
+        "name": "Friendship",
+        "slug": "friendship",
+        "icon": "Smile",
+        "description": "Polaroids, inside jokes, and special surprises for besties",
+        "created_at": "2026-11-18T19:37:51.629Z"
+      },
+      {
+        "id": 7,
+        "name": "Miss You",
+        "slug": "miss-you",
+        "icon": "Clock",
+        "description": "Countdown to reunion and sweet reminder letters",
+        "created_at": "2026-11-18T19:37:51.630Z"
+      },
+      {
+        "id": 8,
+        "name": "Thank You",
+        "slug": "thank-you",
+        "icon": "Heart",
+        "description": "Show gratitude with animated cards and personalized notes",
+        "created_at": "2026-11-18T19:37:51.630Z"
+      }
+    ],
+    "templates": [
+      {
+        "id": 1,
+        "category_id": 1,
+        "name": "Galaxy Cosmic Birthday",
+        "description": "A stellar birthday surprise with floating galaxies, interactive popping balloons, blowable candles, and cake slicing.",
+        "price": 5,
+        "preview_image": "https://images.unsplash.com/photo-1513151233558-d860c5398176?w=600&auto=format&fit=crop&q=80",
+        "is_active": true,
+        "created_at": "2026-11-18T19:37:51.630Z"
+      },
+      {
+        "id": 2,
+        "category_id": 1,
+        "name": "Classic Golden Birthday",
+        "description": "Elegant golden aesthetic with luxury champagne vibes, interactive cake cutting, and parchment letter.",
+        "price": 5,
+        "preview_image": "https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?w=600&auto=format&fit=crop&q=80",
+        "is_active": true,
+        "created_at": "2026-11-18T19:37:51.631Z"
+      },
+      {
+        "id": 3,
+        "category_id": 2,
+        "name": "Forever With You - Proposal",
+        "description": "A romantic proposal with falling rose petals, an evasive moving \"No\" button, and celebratory confetti blast when they say \"Yes\"!",
+        "price": 5,
+        "preview_image": "https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?w=600&auto=format&fit=crop&q=80",
+        "is_active": true,
+        "created_at": "2026-11-18T19:37:51.631Z"
+      },
+      {
+        "id": 4,
+        "category_id": 3,
+        "name": "Infinite Love - Anniversary",
+        "description": "Calculates every second together with a live milestone counter, memory gallery, and couple love letters.",
+        "price": 5,
+        "preview_image": "https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=600&auto=format&fit=crop&q=80",
+        "is_active": true,
+        "created_at": "2026-11-18T19:37:51.632Z"
+      },
+      {
+        "id": 5,
+        "category_id": 4,
+        "name": "Wax-Sealed Apology Letter",
+        "description": "A heartfelt apology with an interactive wax seal to crack open, emotional slide-out notes, and a forgiveness button.",
+        "price": 5,
+        "preview_image": "https://images.unsplash.com/photo-1579783902614-a3fb3927b675?w=600&auto=format&fit=crop&q=80",
+        "is_active": true,
+        "created_at": "2026-11-18T19:37:51.632Z"
+      },
+      {
+        "id": 6,
+        "category_id": 5,
+        "name": "Secret Message Photo Puzzle",
+        "description": "Turns your custom photo into an interactive scrambled tile puzzle that reveals a secret hidden love message upon completion!",
+        "price": 5,
+        "preview_image": "https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?w=600&auto=format&fit=crop&q=80",
+        "is_active": true,
+        "created_at": "2026-11-18T19:37:51.632Z"
+      },
+      {
+        "id": 7,
+        "category_id": 6,
+        "name": "Bestie Memory Wall",
+        "description": "Polaroids, friendship milestones, and an interactive bounce gift box for your favorite best friend.",
+        "price": 5,
+        "preview_image": "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=600&auto=format&fit=crop&q=80",
+        "is_active": true,
+        "created_at": "2026-11-18T19:37:51.632Z"
+      }
+    ],
+    "template_styles": [
+      {
+        "id": 1,
+        "template_id": 1,
+        "style_name": "Galaxy",
+        "configuration": {
+          "theme": "galaxy",
+          "primaryColor": "#8b5cf6",
+          "secondaryColor": "#ec4899",
+          "background": "radial-gradient(circle, #2e1065, #0f172a)"
+        },
+        "created_at": "2026-11-18T19:37:51.633Z"
+      },
+      {
+        "id": 2,
+        "template_id": 1,
+        "style_name": "Neon Glow",
+        "configuration": {
+          "theme": "neon",
+          "primaryColor": "#06b6d4",
+          "secondaryColor": "#d946ef",
+          "background": "radial-gradient(circle, #18181b, #000000)"
+        },
+        "created_at": "2026-11-18T19:37:51.633Z"
+      },
+      {
+        "id": 3,
+        "template_id": 2,
+        "style_name": "Classic Gold",
+        "configuration": {
+          "theme": "gold",
+          "primaryColor": "#f59e0b",
+          "secondaryColor": "#fbbf24",
+          "background": "radial-gradient(circle, #451a03, #1c1917)"
+        },
+        "created_at": "2026-11-18T19:37:51.634Z"
+      },
+      {
+        "id": 4,
+        "template_id": 3,
+        "style_name": "Rose Romance",
+        "configuration": {
+          "theme": "rose",
+          "primaryColor": "#f43f5e",
+          "secondaryColor": "#fb7185",
+          "background": "radial-gradient(circle, #4c0519, #09090b)"
+        },
+        "created_at": "2026-11-18T19:37:51.634Z"
+      }
+    ],
+    "cards": [
+      {
+        "id": 101,
+        "user_id": 2,
+        "template_id": 1,
+        "recipient_name": "Priya",
+        "slug": "priya-birthday-magic",
+        "status": "published",
+        "created_at": "2026-11-18T19:37:51.757Z"
+      },
+      {
+        "id": 2,
+        "user_id": 3,
+        "template_id": 1,
+        "recipient_name": "Ananya",
+        "slug": "Y2avc3YICf",
+        "status": "published",
+        "created_at": "2026-11-18T19:37:51.874Z",
+        "updated_at": "2026-11-18T19:37:51.876Z"
+      },
+      {
+        "id": 3,
+        "user_id": 4,
+        "template_id": 1,
+        "recipient_name": "Ananya",
+        "slug": "cHw1SeMl55",
+        "status": "published",
+        "created_at": "2026-11-18T19:38:15.811Z",
+        "published_at": "2026-11-18T19:38:15.813Z",
+        "updated_at": "2026-11-18T19:38:15.813Z"
+      },
+      {
+        "id": 4,
+        "user_id": 5,
+        "template_id": 1,
+        "recipient_name": "Ananya",
+        "slug": "2EvOJVx5vl",
+        "status": "published",
+        "created_at": "2026-11-18T19:38:28.765Z",
+        "published_at": "2026-11-18T19:38:28.767Z",
+        "updated_at": "2026-11-18T19:38:28.767Z"
+      },
+      {
+        "id": 5,
+        "user_id": 6,
+        "template_id": 1,
+        "recipient_name": "Ananya",
+        "slug": "q4e5cYXM1h",
+        "status": "published",
+        "created_at": "2026-11-18T19:43:58.579Z",
+        "published_at": "2026-11-18T19:43:58.581Z",
+        "updated_at": "2026-11-18T19:43:58.581Z"
+      },
+      {
+        "id": 6,
+        "user_id": 7,
+        "template_id": 1,
+        "recipient_name": "Ananya",
+        "slug": "eRD5cC4Hok",
+        "status": "published",
+        "created_at": "2026-11-18T19:44:46.923Z",
+        "published_at": "2026-11-18T19:44:46.925Z",
+        "updated_at": "2026-11-18T19:44:46.925Z"
+      },
+      {
+        "id": 7,
+        "user_id": null,
+        "template_id": 1,
+        "recipient_name": "Aria",
+        "slug": "Jo6vwR01yk",
+        "status": "published",
+        "created_at": "2026-11-18T19:48:08.143Z",
+        "published_at": "2026-11-18T19:48:08.166Z",
+        "updated_at": "2026-11-18T19:48:08.166Z"
+      },
+      {
+        "id": 8,
+        "user_id": 8,
+        "template_id": 2,
+        "recipient_name": "akhtar",
+        "slug": "MfMAfOIYsw",
+        "status": "published",
+        "created_at": "2026-11-18T19:55:07.952Z",
+        "published_at": "2026-11-18T19:55:07.964Z",
+        "updated_at": "2026-11-18T19:55:07.964Z"
+      },
+      {
+        "id": 9,
+        "user_id": 8,
+        "template_id": 2,
+        "recipient_name": "Mr.Akhtar",
+        "slug": "vvdMRdLkae",
+        "status": "published",
+        "created_at": "2026-11-18T20:08:01.542Z",
+        "published_at": "2026-11-18T20:08:01.553Z",
+        "updated_at": "2026-11-18T20:08:01.553Z"
+      },
+      {
+        "id": 10,
+        "user_id": null,
+        "template_id": 7,
+        "recipient_name": "akkk",
+        "slug": "rXpx9H0CKd",
+        "status": "published",
+        "created_at": "2026-11-18T20:19:20.660Z",
+        "published_at": "2026-11-18T20:19:20.675Z",
+        "updated_at": "2026-11-18T20:19:20.675Z"
+      },
+      {
+        "id": 11,
+        "user_id": 8,
+        "template_id": 2,
+        "recipient_name": "Akiba",
+        "slug": "7blWjpz6Po",
+        "status": "published",
+        "created_at": "2026-11-19T09:21:05.125Z",
+        "published_at": "2026-11-19T09:21:05.136Z",
+        "updated_at": "2026-11-19T09:21:05.136Z"
+      },
+      {
+        "id": 12,
+        "user_id": 9,
+        "template_id": 1,
+        "recipient_name": "Ananya",
+        "slug": "2jmGDkQfK4",
+        "status": "published",
+        "created_at": "2026-11-19T09:35:52.922Z",
+        "published_at": "2026-11-19T09:35:52.925Z",
+        "updated_at": "2026-11-19T09:35:52.925Z"
+      }
+    ],
+    "card_content": [
+      {
+        "id": 1,
+        "card_id": 101,
+        "message": "Happy Birthday Priya! Wishing you infinite joy, starry nights, and endless laughter. Thank you for always being the brightest star in my sky! ✨🎂",
+        "relationship": "Best Friend",
+        "birthday_date": "2026-11-20",
+        "question": "Will you have the best birthday ever?",
+        "ending_message": "Always here for you, no matter what.",
+        "extra_data": {
+          "cakeDesign": "chocolate-stars",
+          "balloonCount": 7
+        },
+        "created_at": "2026-11-18T19:37:51.758Z"
+      },
+      {
+        "id": 2,
+        "card_id": 2,
+        "message": "Happy Birthday Ananya! You are amazing! ✨",
+        "relationship": "Best Friend",
+        "birthday_date": "2026-11-20",
+        "question": null,
+        "ending_message": null,
+        "extra_data": {},
+        "created_at": "2026-11-18T19:37:51.875Z"
+      },
+      {
+        "id": 3,
+        "card_id": 3,
+        "message": "Happy Birthday Ananya! You are amazing! ✨",
+        "relationship": "Best Friend",
+        "birthday_date": "2026-11-20",
+        "question": null,
+        "ending_message": null,
+        "extra_data": {},
+        "created_at": "2026-11-18T19:38:15.811Z"
+      },
+      {
+        "id": 4,
+        "card_id": 4,
+        "message": "Happy Birthday Ananya! You are amazing! ✨",
+        "relationship": "Best Friend",
+        "birthday_date": "2026-11-20",
+        "question": null,
+        "ending_message": null,
+        "extra_data": {},
+        "created_at": "2026-11-18T19:38:28.766Z"
+      },
+      {
+        "id": 5,
+        "card_id": 5,
+        "message": "Happy Birthday Ananya! You are amazing! ✨",
+        "relationship": "Best Friend",
+        "birthday_date": "2026-11-20",
+        "question": null,
+        "ending_message": null,
+        "extra_data": {},
+        "created_at": "2026-11-18T19:43:58.580Z"
+      },
+      {
+        "id": 6,
+        "card_id": 6,
+        "message": "Happy Birthday Ananya! You are amazing! ✨",
+        "relationship": "Best Friend",
+        "birthday_date": "2026-11-20",
+        "question": null,
+        "ending_message": null,
+        "extra_data": {},
+        "created_at": "2026-11-18T19:44:46.924Z"
+      },
+      {
+        "id": 7,
+        "card_id": 7,
+        "message": "Happy Birthday Aria! Have a blast!",
+        "relationship": "Best Friend",
+        "birthday_date": null,
+        "question": null,
+        "ending_message": null,
+        "extra_data": {},
+        "created_at": "2026-11-18T19:48:08.144Z"
+      },
+      {
+        "id": 8,
+        "card_id": 8,
+        "message": "happy Birthday",
+        "relationship": "Friend",
+        "birthday_date": "2026-11-19",
+        "question": null,
+        "ending_message": "always love from your love",
+        "extra_data": {
+          "style": "galaxy",
+          "cakeDesign": "chocolate-stars"
+        },
+        "created_at": "2026-11-18T19:55:07.953Z"
+      },
+      {
+        "id": 9,
+        "card_id": 9,
+        "message": "happy birthday Akkk",
+        "relationship": "Friend",
+        "birthday_date": "2026-11-19",
+        "question": null,
+        "ending_message": "always love from your love",
+        "extra_data": {
+          "style": "galaxy",
+          "cakeDesign": "chocolate-stars"
+        },
+        "created_at": "2026-11-18T20:08:01.543Z"
+      },
+      {
+        "id": 10,
+        "card_id": 10,
+        "message": "",
+        "relationship": "Soulmate / Partner",
+        "birthday_date": "2026-11-19",
+        "question": null,
+        "ending_message": null,
+        "extra_data": {
+          "style": "rose-romance",
+          "cakeDesign": "champagne-gold"
+        },
+        "created_at": "2026-11-18T20:19:20.662Z"
+      },
+      {
+        "id": 11,
+        "card_id": 11,
+        "message": "happy birthday",
+        "relationship": "Sibling",
+        "birthday_date": "2026-11-19",
+        "question": null,
+        "ending_message": null,
+        "extra_data": {
+          "style": "galaxy",
+          "cakeDesign": "chocolate-stars"
+        },
+        "created_at": "2026-11-19T09:21:05.126Z"
+      },
+      {
+        "id": 12,
+        "card_id": 12,
+        "message": "Happy Birthday Ananya! You are amazing! ✨",
+        "relationship": "Best Friend",
+        "birthday_date": "2026-11-20",
+        "question": null,
+        "ending_message": null,
+        "extra_data": {},
+        "created_at": "2026-11-19T09:35:52.923Z"
+      }
+    ],
+    "card_media": [
+      {
+        "id": 1,
+        "card_id": 101,
+        "media_type": "image",
+        "media_url": "https://images.unsplash.com/photo-1513151233558-d860c5398176?w=600&auto=format&fit=crop&q=80",
+        "created_at": "2026-11-18T19:37:51.758Z"
+      },
+      {
+        "id": 2,
+        "card_id": 8,
+        "media_type": "image",
+        "media_url": "http://localhost:5000/uploads/images-1795031618087-jabed_Akhtar_(2).png",
+        "created_at": "2026-11-18T19:55:07.955Z"
+      },
+      {
+        "id": 3,
+        "card_id": 8,
+        "media_type": "image",
+        "media_url": "http://localhost:5000/uploads/images-1795031628157-jabed_Akhtar.png",
+        "created_at": "2026-11-18T19:55:07.956Z"
+      },
+      {
+        "id": 4,
+        "card_id": 8,
+        "media_type": "image",
+        "media_url": "http://localhost:5000/uploads/images-1795031692523-MD_AKHTAR_17607010183208_profile_pic.jpg",
+        "created_at": "2026-11-18T19:55:07.957Z"
+      },
+      {
+        "id": 5,
+        "card_id": 8,
+        "media_type": "image",
+        "media_url": "http://localhost:5000/uploads/images-1795031704303-IMG_20251130_204120.jpg",
+        "created_at": "2026-11-18T19:55:07.957Z"
+      },
+      {
+        "id": 6,
+        "card_id": 9,
+        "media_type": "image",
+        "media_url": "http://localhost:5000/uploads/images-1795032420822-jabed_Akhtar_(2).png",
+        "created_at": "2026-11-18T20:08:01.545Z"
+      },
+      {
+        "id": 7,
+        "card_id": 9,
+        "media_type": "image",
+        "media_url": "http://localhost:5000/uploads/images-1795032427923-.trashed-1784692619-1782100501101.png",
+        "created_at": "2026-11-18T20:08:01.545Z"
+      },
+      {
+        "id": 8,
+        "card_id": 9,
+        "media_type": "image",
+        "media_url": "http://localhost:5000/uploads/images-1795032466766-IMG-20261020-WA0004.jpg",
+        "created_at": "2026-11-18T20:08:01.546Z"
+      },
+      {
+        "id": 9,
+        "card_id": 9,
+        "media_type": "image",
+        "media_url": "http://localhost:5000/uploads/images-1795032477466-IMG-20261020-WA0005.jpg",
+        "created_at": "2026-11-18T20:08:01.547Z"
+      },
+      {
+        "id": 10,
+        "card_id": 10,
+        "media_type": "image",
+        "media_url": "http://localhost:5000/uploads/images-1795033127153-IMG-20261020-WA0017.jpg",
+        "created_at": "2026-11-18T20:19:20.664Z"
+      },
+      {
+        "id": 11,
+        "card_id": 11,
+        "media_type": "image",
+        "media_url": "http://localhost:5000/uploads/images-1795080017349-jabed_Akhtar_(2).png",
+        "created_at": "2026-11-19T09:21:05.127Z"
+      },
+      {
+        "id": 12,
+        "card_id": 11,
+        "media_type": "image",
+        "media_url": "http://localhost:5000/uploads/images-1795080027212-1775455320858.png",
+        "created_at": "2026-11-19T09:21:05.128Z"
+      },
+      {
+        "id": 13,
+        "card_id": 11,
+        "media_type": "image",
+        "media_url": "http://localhost:5000/uploads/images-1795080036845-MD_AKHTAR_17607010183208_profile_pic.jpg",
+        "created_at": "2026-11-19T09:21:05.129Z"
+      },
+      {
+        "id": 14,
+        "card_id": 11,
+        "media_type": "image",
+        "media_url": "http://localhost:5000/uploads/images-1795080050879-jabed_Akhtar.png",
+        "created_at": "2026-11-19T09:21:05.130Z"
+      }
+    ],
+    "card_settings": [
+      {
+        "id": 1,
+        "card_id": 101,
+        "music": "birthday-acoustic",
+        "countdown": true,
+        "passcode_hash": null,
+        "created_at": "2026-11-18T19:37:51.758Z"
+      },
+      {
+        "id": 2,
+        "card_id": 2,
+        "music": "default-melody",
+        "countdown": true,
+        "passcode_hash": "$2b$10$fqvVbY9M/jcdf4/ODFFCw.n99rIrchNtB97xoyz8/mjjEtdTBRBBC",
+        "created_at": "2026-11-18T19:37:51.875Z"
+      },
+      {
+        "id": 3,
+        "card_id": 3,
+        "music": "default-melody",
+        "countdown": true,
+        "passcode_hash": "$2b$10$DBCeXAt1wuEWpoysbZ461uMabZr3zHzJ2l0NTXy.Scqigt2f549iC",
+        "created_at": "2026-11-18T19:38:15.812Z"
+      },
+      {
+        "id": 4,
+        "card_id": 4,
+        "music": "default-melody",
+        "countdown": true,
+        "passcode_hash": "$2b$10$o6f1SRuXaE2kV64KUIv21uaJ8t13zQMl4Y.Sg6v0QX6hvac8t8p..",
+        "created_at": "2026-11-18T19:38:28.766Z"
+      },
+      {
+        "id": 5,
+        "card_id": 5,
+        "music": "default-melody",
+        "countdown": true,
+        "passcode_hash": "$2b$10$ctAs0EPmJjN5prB0Ws4eJewdOIIe8.dKFViSScVUxUDn1GoKzF7Fq",
+        "created_at": "2026-11-18T19:43:58.580Z"
+      },
+      {
+        "id": 6,
+        "card_id": 6,
+        "music": "default-melody",
+        "countdown": true,
+        "passcode_hash": "$2b$10$KRaqrbdHTRp2Gcn6RMatje7l2gCZ2c3O9VR8WLY2DY3iHl8Qso9h2",
+        "created_at": "2026-11-18T19:44:46.924Z"
+      },
+      {
+        "id": 7,
+        "card_id": 7,
+        "music": "default-melody",
+        "countdown": true,
+        "passcode_hash": null,
+        "created_at": "2026-11-18T19:48:08.144Z"
+      },
+      {
+        "id": 8,
+        "card_id": 8,
+        "music": "birthday-acoustic",
+        "countdown": true,
+        "passcode_hash": "$2b$10$uD3zwECuLu1b02Re/xSPLuLNB0AkyrlVHsNhEEdo4myRczXORwC6m",
+        "created_at": "2026-11-18T19:55:07.954Z"
+      },
+      {
+        "id": 9,
+        "card_id": 9,
+        "music": "birthday-acoustic",
+        "countdown": false,
+        "passcode_hash": "$2b$10$mlLXJerCzW9AVtTpntceEeUgAHgsIBkQV/wCrjyjOV9QuAzbE84aG",
+        "created_at": "2026-11-18T20:08:01.544Z"
+      },
+      {
+        "id": 10,
+        "card_id": 10,
+        "music": "birthday-acoustic",
+        "countdown": false,
+        "passcode_hash": null,
+        "created_at": "2026-11-18T20:19:20.663Z"
+      },
+      {
+        "id": 11,
+        "card_id": 11,
+        "music": "birthday-acoustic",
+        "countdown": false,
+        "passcode_hash": "$2b$10$hIXc4jUMdEibdA.CbFLeEefONzVwgSl114CEU3.nEXgXwDHAVYkBq",
+        "created_at": "2026-11-19T09:21:05.127Z"
+      },
+      {
+        "id": 12,
+        "card_id": 12,
+        "music": "default-melody",
+        "countdown": true,
+        "passcode_hash": "$2b$10$ja2.9bmHcVKa.xhtYekgduSNAwnkNgHviGYDEDeg98HUp9rbHmA8e",
+        "created_at": "2026-11-19T09:35:52.924Z"
+      }
+    ],
+    "card_views": [
+      {
+        "id": 1,
+        "card_id": 4,
+        "viewed_at": "2026-11-18T19:38:28.768Z",
+        "user_agent": "",
+        "created_at": "2026-11-18T19:38:28.768Z"
+      },
+      {
+        "id": 2,
+        "card_id": 5,
+        "viewed_at": "2026-11-18T19:43:58.582Z",
+        "user_agent": "",
+        "created_at": "2026-11-18T19:43:58.582Z"
+      },
+      {
+        "id": 3,
+        "card_id": 6,
+        "viewed_at": "2026-11-18T19:44:46.926Z",
+        "user_agent": "",
+        "created_at": "2026-11-18T19:44:46.926Z"
+      },
+      {
+        "id": 4,
+        "card_id": 7,
+        "viewed_at": "2026-11-18T19:48:08.173Z",
+        "user_agent": "Mozilla/5.0 (Windows NT; Windows NT 10.0; en-IN) WindowsPowerShell/5.1.26100.9818",
+        "created_at": "2026-11-18T19:48:08.173Z"
+      },
+      {
+        "id": 5,
+        "card_id": 9,
+        "viewed_at": "2026-11-18T20:08:28.216Z",
+        "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36",
+        "created_at": "2026-11-18T20:08:28.216Z"
+      },
+      {
+        "id": 6,
+        "card_id": 9,
+        "viewed_at": "2026-11-18T20:08:28.221Z",
+        "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36",
+        "created_at": "2026-11-18T20:08:28.221Z"
+      },
+      {
+        "id": 7,
+        "card_id": 9,
+        "viewed_at": "2026-11-18T20:12:17.140Z",
+        "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36",
+        "created_at": "2026-11-18T20:12:17.140Z"
+      },
+      {
+        "id": 8,
+        "card_id": 9,
+        "viewed_at": "2026-11-18T20:12:17.146Z",
+        "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36",
+        "created_at": "2026-11-18T20:12:17.146Z"
+      },
+      {
+        "id": 9,
+        "card_id": 9,
+        "viewed_at": "2026-11-19T08:38:21.635Z",
+        "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36",
+        "created_at": "2026-11-19T08:38:21.635Z"
+      },
+      {
+        "id": 10,
+        "card_id": 9,
+        "viewed_at": "2026-11-19T08:38:21.645Z",
+        "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36",
+        "created_at": "2026-11-19T08:38:21.645Z"
+      },
+      {
+        "id": 11,
+        "card_id": 11,
+        "viewed_at": "2026-11-19T09:21:15.308Z",
+        "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36",
+        "created_at": "2026-11-19T09:21:15.308Z"
+      },
+      {
+        "id": 12,
+        "card_id": 11,
+        "viewed_at": "2026-11-19T09:21:15.312Z",
+        "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36",
+        "created_at": "2026-11-19T09:21:15.312Z"
+      },
+      {
+        "id": 13,
+        "card_id": 11,
+        "viewed_at": "2026-11-19T09:29:30.915Z",
+        "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36",
+        "created_at": "2026-11-19T09:29:30.915Z"
+      },
+      {
+        "id": 14,
+        "card_id": 11,
+        "viewed_at": "2026-11-19T09:29:30.918Z",
+        "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36",
+        "created_at": "2026-11-19T09:29:30.918Z"
+      },
+      {
+        "id": 15,
+        "card_id": 11,
+        "viewed_at": "2026-11-19T09:30:40.934Z",
+        "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36",
+        "created_at": "2026-11-19T09:30:40.934Z"
+      },
+      {
+        "id": 16,
+        "card_id": 11,
+        "viewed_at": "2026-11-19T09:30:40.937Z",
+        "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36",
+        "created_at": "2026-11-19T09:30:40.937Z"
+      },
+      {
+        "id": 17,
+        "card_id": 12,
+        "viewed_at": "2026-11-19T09:35:52.926Z",
+        "user_agent": "",
+        "created_at": "2026-11-19T09:35:52.926Z"
+      }
+    ],
+    "reviews": [
+      {
+        "id": 1,
+        "user_id": 2,
+        "author_name": "Aarav & Meera",
+        "rating": 5,
+        "comment": "The interactive proposal was completely magical! She laughed so hard trying to click the \"No\" button, and cried when she clicked \"Yes\". 10/10 recommend!",
+        "created_at": "2026-11-18T19:37:51.756Z"
+      },
+      {
+        "id": 2,
+        "user_id": 2,
+        "author_name": "Priya Sharma",
+        "rating": 5,
+        "comment": "The birthday cake cutting and balloon popping sound effects felt so real and made my best friend cry tears of joy thousands of miles away.",
+        "created_at": "2026-11-18T19:37:51.756Z"
+      },
+      {
+        "id": 3,
+        "user_id": 2,
+        "author_name": "Rohan Verma",
+        "rating": 5,
+        "comment": "The wax seal apology card helped me resolve a huge fight with my girlfriend. She said it was the sweetest gesture ever.",
+        "created_at": "2026-11-18T19:37:51.757Z"
+      }
+    ]
+  },
+  "counters": {
+    "users": 10,
+    "categories": 9,
+    "templates": 8,
+    "template_styles": 5,
+    "cards": 13,
+    "card_content": 13,
+    "card_media": 15,
+    "card_settings": 13,
+    "card_views": 18,
+    "reviews": 4
+  }
+}
