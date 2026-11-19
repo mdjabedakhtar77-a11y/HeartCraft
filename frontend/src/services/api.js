@@ -199,5 +199,16 @@ class ApiService {
   }
 }
 
+export const getMediaUrl = (url) => {
+  if (!url) return '';
+  if (url.startsWith('http://') || url.startsWith('https://') || url.startsWith('data:')) {
+    return url;
+  }
+  const backendBase = (typeof window !== 'undefined' && window.location.hostname.includes('vercel.app'))
+    ? 'https://heartcraft-backend.onrender.com'
+    : '';
+  return `${backendBase}${url.startsWith('/') ? '' : '/'}${url}`;
+};
+
 export const api = new ApiService();
 export default api;
