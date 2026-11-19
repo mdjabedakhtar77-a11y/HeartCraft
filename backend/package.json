@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "build": "echo 'Backend ready'",
     "start": "node server.js",
     "dev": "node server.js",
     "test": "node tests/unit_and_lld.test.js"
