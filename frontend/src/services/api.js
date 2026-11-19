@@ -4,11 +4,20 @@
  * Single Responsibility: Network communication and HTTP abstraction.
  */
 
-const API_BASE = import.meta.env.VITE_API_URL 
-  ? `${import.meta.env.VITE_API_URL.replace(/\/$/, '')}/api`
-  : (typeof window !== 'undefined' && window.location.hostname.includes('vercel.app'))
-    ? 'https://heartcraft-backend.onrender.com/api'
-    : '/api';
+const BACKEND_URL = 'https://heartcraft-backend.onrender.com';
+
+const isLocalhost = typeof window !== 'undefined' && (
+  window.location.hostname === 'localhost' ||
+  window.location.hostname === '127.0.0.1' ||
+  window.location.hostname.startsWith('172.16.') ||
+  window.location.hostname.startsWith('192.168.') ||
+  window.location.hostname.startsWith('10.')
+);
+
+// When deployed on Vercel or any cloud URL, connect directly to the live Render backend!
+const API_BASE = (isLocalhost && !import.meta.env.VITE_API_URL)
+  ? '/api'
+  : `${(import.meta.env.VITE_API_URL || BACKEND_URL).replace(/\/$/, '')}/api`;
 
 class ApiService {
   constructor() {
@@ -204,10 +213,10 @@ export const getMediaUrl = (url) => {
   if (url.startsWith('http://') || url.startsWith('https://') || url.startsWith('data:')) {
     return url;
   }
-  const backendBase = (typeof window !== 'undefined' && window.location.hostname.includes('vercel.app'))
-    ? 'https://heartcraft-backend.onrender.com'
-    : '';
-  return `${backendBase}${url.startsWith('/') ? '' : '/'}${url}`;
+  const baseUrl = (isLocalhost && !import.meta.env.VITE_API_URL)
+    ? ''
+    : BACKEND_URL;
+  return `${baseUrl}${url.startsWith('/') ? '' : '/'}${url}`;
 };
 
 export const api = new ApiService();
