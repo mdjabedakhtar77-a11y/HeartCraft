@@ -4,15 +4,15 @@
   "outputDirectory": "frontend/dist",
   "rewrites": [
     {
-      "source": "/api/(.*)",
-      "destination": "/api/[...slug].cjs"
+      "source": "/api/:path*",
+      "destination": "https://heartcraft-backend.onrender.com/api/:path*"
     },
     {
-      "source": "/api",
-      "destination": "/api/index.cjs"
+      "source": "/uploads/:path*",
+      "destination": "https://heartcraft-backend.onrender.com/uploads/:path*"
     },
     {
-      "source": "/((?!api|assets|favicon.svg|icons.svg).*)",
+      "source": "/((?!api|uploads|assets|favicon.svg|icons.svg).*)",
       "destination": "/index.html"
     }
   ]

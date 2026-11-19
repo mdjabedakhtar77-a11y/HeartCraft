@@ -6,7 +6,9 @@
 
 const API_BASE = import.meta.env.VITE_API_URL 
   ? `${import.meta.env.VITE_API_URL.replace(/\/$/, '')}/api`
-  : '/api';
+  : (typeof window !== 'undefined' && window.location.hostname.includes('vercel.app'))
+    ? 'https://heartcraft-backend.onrender.com/api'
+    : '/api';
 
 class ApiService {
   constructor() {
