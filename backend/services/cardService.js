@@ -79,6 +79,14 @@ class CardService {
       throw new Error('Experience not found or invalid URL.');
     }
 
+    // Enforce 24-hour expiration window
+    if (card.isExpired && card.isExpired()) {
+      const err = new Error('This surprise link was valid for 24 hours and has now expired.');
+      err.isExpired = true;
+      err.expires_at = card.getExpiresAt();
+      throw err;
+    }
+
     if (card.status !== 'published') {
       // Auto-publish so recipient can view without artificial barrier
       Card.publish(card.id);
@@ -95,6 +103,8 @@ class CardService {
         slug: card.slug,
         recipient_name: card.recipient_name,
         template: card.template,
+        expires_at: card.getExpiresAt(),
+        is_expired: false,
         is_passcode_protected: true,
         settings: {
           countdown: card.settings.countdown,
@@ -105,6 +115,8 @@ class CardService {
 
     return {
       ...card,
+      expires_at: card.getExpiresAt(),
+      is_expired: false,
       is_passcode_protected: false
     };
   }
@@ -113,6 +125,12 @@ class CardService {
     const card = Card.findBySlug(slug);
     if (!card) {
       throw new Error('Experience not found.');
+    }
+
+    if (card.isExpired && card.isExpired()) {
+      const err = new Error('This surprise link was valid for 24 hours and has now expired.');
+      err.isExpired = true;
+      throw err;
     }
 
     const dbCardSettings = require('../config/database').getDatabase().findOne('card_settings', s => Number(s.card_id) === Number(card.id));

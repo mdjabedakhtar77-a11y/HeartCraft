@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
-import { Heart, Sparkles, Share2, Copy, Check, ExternalLink, MessageCircle, Eye, Calendar, Plus, Loader2 } from 'lucide-react';
+import { Heart, Sparkles, Share2, Copy, Check, ExternalLink, MessageCircle, Eye, Calendar, Plus, Loader2, Clock } from 'lucide-react';
 import api from '../services/api';
 import { useAuth } from '../context/AuthContext';
 import soundEffects from '../utils/soundEffects';
@@ -41,6 +41,29 @@ export default function MyCardsPage() {
 
   const getCardUrl = (slug) => {
     return `${window.location.origin}/card/${slug}`;
+  };
+
+  const isCardExpired = (card) => {
+    if (card.is_expired) return true;
+    if (card.expires_at) {
+      return Date.now() > new Date(card.expires_at).getTime();
+    }
+    const base = card.published_at || card.created_at;
+    if (base) {
+      return Date.now() > (new Date(base).getTime() + 24 * 60 * 60 * 1000);
+    }
+    return false;
+  };
+
+  const getRemainingHours = (card) => {
+    const expiry = card.expires_at 
+      ? new Date(card.expires_at).getTime()
+      : (new Date(card.published_at || card.created_at || Date.now()).getTime() + 24 * 60 * 60 * 1000);
+    const diff = expiry - Date.now();
+    if (diff <= 0) return 'Expired';
+    const hrs = Math.floor(diff / (1000 * 60 * 60));
+    const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    return `${hrs}h ${mins}m left`;
   };
 
   const handleCopy = (slug) => {
@@ -150,10 +173,22 @@ export default function MyCardsPage() {
                       <span className="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-pink-500/20 text-pink-300 border border-pink-500/30 uppercase tracking-wide">
                         {card.template?.category || 'Surprise'}
                       </span>
-                      <span className="text-[11px] text-slate-400 flex items-center gap-1">
-                        <Eye className="w-3.5 h-3.5 text-purple-400" />
-                        {card.views_count || 0} views
-                      </span>
+                      <div className="flex items-center gap-2">
+                        {isCardExpired(card) ? (
+                          <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-rose-500/15 text-rose-300 border border-rose-500/30">
+                            ⌛ Expired (24h)
+                          </span>
+                        ) : (
+                          <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-amber-500/15 text-amber-300 border border-amber-500/30 flex items-center gap-1">
+                            <Clock className="w-3 h-3 text-amber-400" />
+                            {getRemainingHours(card)}
+                          </span>
+                        )}
+                        <span className="text-[11px] text-slate-400 flex items-center gap-1">
+                          <Eye className="w-3.5 h-3.5 text-purple-400" />
+                          {card.views_count || 0}
+                        </span>
+                      </div>
                     </div>
 
                     <h3 className="text-lg font-bold text-white group-hover:text-pink-300 transition-colors">

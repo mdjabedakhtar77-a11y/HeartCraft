@@ -15,6 +15,7 @@ class Card {
     this.slug = data.slug;
     this.status = data.status || 'draft';
     this.published_at = data.published_at || null;
+    this.expires_at = data.expires_at || null;
     this.created_at = data.created_at;
     this.updated_at = data.updated_at;
 
@@ -24,6 +25,22 @@ class Card {
     this.settings = data.settings || null;
     this.template = data.template || null;
     this.views_count = data.views_count || 0;
+  }
+
+  isExpired() {
+    const expiryTime = this.expires_at 
+      ? new Date(this.expires_at).getTime()
+      : (this.published_at 
+          ? new Date(this.published_at).getTime() + 24 * 60 * 60 * 1000
+          : (this.created_at ? new Date(this.created_at).getTime() + 24 * 60 * 60 * 1000 : null));
+    if (!expiryTime) return false;
+    return Date.now() > expiryTime;
+  }
+
+  getExpiresAt() {
+    if (this.expires_at) return this.expires_at;
+    const base = new Date(this.published_at || this.created_at || Date.now());
+    return new Date(base.getTime() + 24 * 60 * 60 * 1000).toISOString();
   }
 
   static findById(id) {
@@ -57,9 +74,12 @@ class Card {
     const settings = db.findOne('card_settings', s => Number(s.card_id) === Number(cardRow.id)) || {};
     const views = db.find('card_views', v => Number(v.card_id) === Number(cardRow.id));
     const template = Template.getById(cardRow.template_id);
+    const baseDate = cardRow.published_at || cardRow.created_at || new Date().toISOString();
+    const expiresAt = cardRow.expires_at || new Date(new Date(baseDate).getTime() + 24 * 60 * 60 * 1000).toISOString();
 
     return new Card({
       ...cardRow,
+      expires_at: expiresAt,
       content,
       media,
       settings: {
@@ -73,12 +93,15 @@ class Card {
 
   static createDraft(data) {
     const db = getDatabase();
+    const createdAt = new Date();
+    const expiresAt = new Date(createdAt.getTime() + 24 * 60 * 60 * 1000);
     const card = db.insert('cards', {
       user_id: data.user_id || null,
       template_id: Number(data.template_id),
       recipient_name: data.recipient_name || 'My Love',
       slug: data.slug,
-      status: 'draft'
+      status: 'draft',
+      expires_at: expiresAt.toISOString()
     });
 
     // Insert Content
@@ -170,9 +193,12 @@ class Card {
 
   static publish(id) {
     const db = getDatabase();
+    const publishedAt = new Date();
+    const expiresAt = new Date(publishedAt.getTime() + 24 * 60 * 60 * 1000);
     db.update('cards', id, { 
       status: 'published',
-      published_at: new Date().toISOString()
+      published_at: publishedAt.toISOString(),
+      expires_at: expiresAt.toISOString()
     });
     return this.findById(id);
   }

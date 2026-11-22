@@ -99,6 +99,8 @@ exports.getUserCards = async (req, res, next) => {
       const hydrated = Card.hydrate(row);
       return {
         ...hydrated,
+        expires_at: hydrated.getExpiresAt(),
+        is_expired: hydrated.isExpired(),
         cardUrl: `${frontendUrl}/card/${hydrated.slug}`
       };
     });
@@ -117,7 +119,11 @@ exports.publishCard = async (req, res, next) => {
     return res.json({
       success: true,
       message: 'Card published successfully!',
-      card,
+      card: {
+        ...card,
+        expires_at: card.getExpiresAt(),
+        is_expired: card.isExpired()
+      },
       shareUrl: cardUrl
     });
   } catch (err) {
@@ -131,6 +137,14 @@ exports.getPublicCard = async (req, res, next) => {
     const card = await cardService.getPublicCard(req.params.slug, userAgent);
     return res.json({ success: true, card });
   } catch (err) {
+    if (err.isExpired) {
+      return res.status(410).json({
+        success: false,
+        expired: true,
+        expires_at: err.expires_at,
+        message: err.message || 'This surprise link was valid for 24 hours and has now expired.'
+      });
+    }
     return res.status(404).json({ success: false, message: err.message });
   }
 };
@@ -150,6 +164,13 @@ exports.verifyPasscode = async (req, res, next) => {
       card: result.card
     });
   } catch (err) {
+    if (err.isExpired) {
+      return res.status(410).json({
+        success: false,
+        expired: true,
+        message: err.message || 'This surprise link was valid for 24 hours and has now expired.'
+      });
+    }
     next(err);
   }
 };
@@ -164,7 +185,7 @@ exports.generateShare = async (req, res, next) => {
     const frontendUrl = resolveFrontendUrl(req);
     const cardUrl = `${frontendUrl}/card/${card.slug}`;
     const whatsappMessage = encodeURIComponent(
-      `✨ Hey ${card.recipient_name}! I made a special digital surprise just for you on HeartCraft ❤️ Open it here:\n${cardUrl}`
+      `✨ Hey ${card.recipient_name}! I made a special 24-hour surprise just for you on HeartCraft ❤️ Open it before the link expires:\n${cardUrl}`
     );
     const whatsappUrl = `https://api.whatsapp.com/send?text=${whatsappMessage}`;
 
@@ -174,9 +195,11 @@ exports.generateShare = async (req, res, next) => {
         cardUrl,
         slug: card.slug,
         recipient_name: card.recipient_name,
+        expires_at: card.getExpiresAt(),
+        is_expired: card.isExpired(),
         whatsappUrl,
-        emailSubject: encodeURIComponent(`A special surprise for you, ${card.recipient_name}! ❤️`),
-        emailBody: encodeURIComponent(`Hey ${card.recipient_name},\n\nI created something memorable for you. Click the link below to experience your digital surprise:\n${cardUrl}\n\nWith love!`)
+        emailSubject: encodeURIComponent(`A special 24-hour surprise for you, ${card.recipient_name}! ❤️`),
+        emailBody: encodeURIComponent(`Hey ${card.recipient_name},\n\nI created something special for you on HeartCraft. Click the link below to experience your digital surprise (this link is valid for 24 hours):\n${cardUrl}\n\nWith love!`)
       }
     });
   } catch (err) {

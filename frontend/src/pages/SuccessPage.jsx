@@ -16,7 +16,8 @@ import {
   Sparkles,
   Smartphone,
   Send,
-  Heart
+  Heart,
+  Clock
 } from 'lucide-react';
 import api from '../services/api';
 import soundEffects from '../utils/soundEffects';
@@ -72,7 +73,7 @@ export default function SuccessPage() {
 
   const recipientName = card?.recipient_name || 'My Friend';
 
-  const shareText = `✨ Hey ${recipientName}! I created an interactive surprise just for you on HeartCraft ❤️ Open it here:\n${liveCardUrl}`;
+  const shareText = `✨ Hey ${recipientName}! I made a special 24-hour digital surprise just for you on HeartCraft ❤️ Open it before the link expires:\n${liveCardUrl}`;
 
   const handleCopyLink = () => {
     if (liveCardUrl) {
@@ -127,6 +128,12 @@ export default function SuccessPage() {
             <p className="text-sm text-slate-300 mt-2 max-w-md mx-auto">
               The surprise card for <span className="text-pink-400 font-bold">{recipientName}</span> is ready to send. Your friend can open it instantly on any phone or computer without needing an app or account!
             </p>
+
+            {/* 24-Hour Expiration Banner */}
+            <div className="inline-flex items-center gap-2 mt-4 px-4 py-2 rounded-2xl bg-amber-500/15 border border-amber-500/30 text-amber-300 text-xs font-semibold shadow-md">
+              <Clock className="w-4 h-4 text-amber-400 animate-pulse" />
+              <span>Valid for 24 Hours • Send it to your loved one now!</span>
+            </div>
           </div>
 
           {/* Primary Quick Share Bar (Native Share Sheet for Mobile) */}
