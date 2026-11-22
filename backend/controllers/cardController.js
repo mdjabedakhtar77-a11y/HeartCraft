@@ -34,7 +34,11 @@ exports.createCardDraft = async (req, res, next) => {
     return res.status(201).json({
       success: true,
       message: 'Card draft created successfully.',
-      card
+      card: {
+        ...card,
+        expires_at: card.getExpiresAt ? card.getExpiresAt() : card.expires_at,
+        is_expired: card.isExpired ? card.isExpired() : false
+      }
     });
   } catch (err) {
     next(err);
@@ -44,7 +48,14 @@ exports.createCardDraft = async (req, res, next) => {
 exports.getCardDetails = async (req, res, next) => {
   try {
     const card = await cardService.getCardForCreator(req.params.id);
-    return res.json({ success: true, card });
+    return res.json({ 
+      success: true, 
+      card: {
+        ...card,
+        expires_at: card.getExpiresAt ? card.getExpiresAt() : card.expires_at,
+        is_expired: card.isExpired ? card.isExpired() : false
+      } 
+    });
   } catch (err) {
     next(err);
   }

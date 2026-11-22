@@ -42,7 +42,7 @@ app.get('/api/health', (req, res) => {
   res.json({
     status: 'healthy',
     platform: 'HeartCraft Digital Surprise Platform (Free & Instant)',
-    version: '2.0.0',
+    version: '2.1.0',
     timestamp: new Date().toISOString()
   });
 });
